@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "822028325192",
+    "firebase_url": "https://icareregester.firebaseio.com",
+    "project_id": "icareregester",
+    "storage_bucket": "icareregester.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822028325192:android:3c688623e9610316",
+        "android_client_info": {
+          "package_name": "com.example.khadijahal_saggaf.icare_regester"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822028325192-jkl7cma58o2b1mp1v09v0gdis8t00i5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.khadijahal_saggaf.icare_regester",
+            "certificate_hash": "716c927804e42f3a241e90d8f43b95b08f026ce1"
+          }
+        },
+        {
+          "client_id": "822028325192-9bdmdbcgvsocik8ukqbtnn6cu35f5ij0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGY7-kR14RuEVaTs8Vh9tLGWZDdgjhr_c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822028325192-9bdmdbcgvsocik8ukqbtnn6cu35f5ij0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
