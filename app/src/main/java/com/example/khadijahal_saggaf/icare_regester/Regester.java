@@ -23,7 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Regester extends AppCompatActivity implements View.OnClickListener{
 
-    EditText editTextUsername , editTextEmail, editTextPassword;
+     static String name;
+     static String useremail;
+     static String username;
+    EditText editTextName , editTextEmail, editTextPassword;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView Loin;
@@ -32,7 +35,7 @@ public class Regester extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regester);
 
-        editTextUsername = (EditText)findViewById(R.id.editText4);
+        editTextName = (EditText)findViewById(R.id.editText4);
         editTextEmail = (EditText)findViewById(R.id.editText3);
         editTextPassword = (EditText)findViewById(R.id.editText5);
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
@@ -55,13 +58,16 @@ public class Regester extends AppCompatActivity implements View.OnClickListener{
 
 
     private void registerUser() {
-        final String username = editTextUsername.getText().toString().trim();
-        final String useremail = editTextEmail.getText().toString().trim();
+        name = editTextName.getText().toString().trim();
+        useremail = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        username=useremail.substring(0,useremail.indexOf('@'));
 
-        if (username.isEmpty()) {
-            editTextUsername.setError("Name is required");
-            editTextUsername.requestFocus();
+
+
+        if (name.isEmpty()) {
+            editTextName.setError("Name is required");
+            editTextName.requestFocus();
             return;
         }
 
@@ -95,8 +101,10 @@ public class Regester extends AppCompatActivity implements View.OnClickListener{
         mAuth.createUserWithEmailAndPassword(useremail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()){
-                    User user = new User(username,useremail);
+
+                    User user = new User(name,useremail,username);
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -105,18 +113,33 @@ public class Regester extends AppCompatActivity implements View.OnClickListener{
                             progressBar.setVisibility(View.GONE);
                             if(task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(),"User Registered Successful",Toast.LENGTH_SHORT).show();
+
+                                //start Home Activity after success SignUp
+                                startActivity(new Intent(Regester.this,Home.class));
                             } else {
-                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "no cannot add user as root", Toast.LENGTH_SHORT).show();
 
                             }
                         }
                     });
+                    //Toast.makeText(getApplicationContext(),"Account Created Successful",Toast.LENGTH_SHORT).show();
+
                 } else{
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+    }
+
+    public static String getName(){
+        return name;
+    }
+    public static String getEmail(){
+        return useremail;
+    }
+    public static String getUserName(){
+        return username;
     }
 
     @Override

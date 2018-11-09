@@ -29,7 +29,17 @@
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PatientHome"></activity>
+        <activity android:name=".Blank"
+            android:parentActivityName=".Home"></activity>
+
+        <activity android:name=".Patient_Home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".User_Account"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
     </application>
 
 </manifest>
